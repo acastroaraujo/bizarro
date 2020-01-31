@@ -8,7 +8,6 @@
 #' @export
 #'
 bizarro <- function(x) {
-  # This uses magic to pass arguments to the right method
   UseMethod("bizarro")
 }
 
@@ -19,14 +18,19 @@ str_reverse <- function(x) {
   )
 }
 
+#' @export
 bizarro.character <- function(x) {
   str_reverse(x)
 }
 
+
+#' @export
 bizarro.numeric <- function(x) {
   -x
 }
 
+
+#' @export
 bizarro.default <- function(x) {
   stop(
     "Don't know how to make bizzaro <",
@@ -36,19 +40,25 @@ bizarro.default <- function(x) {
 }
 
 
+#' @export
 bizarro.data.frame <- function(x) {
   purrr::map_df(x, bizarro)
 }
 
 
+#' @export
 bizarro.factor <- function(x) {
   attr(x, "levels") <- bizarro(attr(x, "levels"))
   factor(x, levels = rev(levels(x)))
 }
 
+
+#' @export
 bizarro.logical <- function(x) {
   ifelse(x, FALSE, TRUE)
 }
+
+
 
 
 
