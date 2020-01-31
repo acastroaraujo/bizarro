@@ -1,12 +1,16 @@
 Package: bizarro
-Title: What the Package Does (One Line, Title Case)
+Title: This packages transforms inputs into "bizarro inputs"
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "andrés",
            family = "castro araújo",
            role = c("aut", "cre"),
            email = "acastroaraujo@gmai.com")
-Description: What the package does (one paragraph).
+Description: This is a toy package created as an exercise for the Building Tidy Tools workshop at RStudio Conference 2020. It contains a single generic function "bizarro", powered by the R's S3 object-oriented system.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.0.2
+Imports: 
+    purrr,
+    stringr
