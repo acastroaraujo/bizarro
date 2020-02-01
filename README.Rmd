@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", comment = "<")
+library(bizarro)
+```
+
+# Bizarro
+
+```{r, out.width="40%", echo=FALSE}
+knitr::include_graphics("bizarro.jpg")
+```
+
+This toy packages transforms inputs into "bizarro outputs". This was created as an exercise for the [___Building Tidy Tools___](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop at RStudio Conference 2020. It contains a single generic function "bizarro", powered by the R's S3 object-oriented system.
+
+__Install with__
+
+```{r, eval=FALSE}
+install_github("acastroaraujo/bizarro")
+```
+
+__Examples__
+
+```{r}
+ex <- list(character = "andres castro araujo",
+           numeric = 1:10, 
+           factor = factor(stringr::fruit[1:5]),
+           logical = c(TRUE, FALSE, NA, FALSE, TRUE)
+           )
+
+str(ex)
+str(lapply(ex, bizarro))
+
+bizarro(iris)
+```
+
