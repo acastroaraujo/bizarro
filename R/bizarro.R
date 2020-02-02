@@ -39,13 +39,6 @@ bizarro.default <- function(x) {
   )
 }
 
-
-#' @export
-bizarro.data.frame <- function(x) {
-  purrr::map_df(x, bizarro)
-}
-
-
 #' @export
 bizarro.factor <- function(x) {
   attr(x, "levels") <- bizarro(attr(x, "levels"))
@@ -58,9 +51,15 @@ bizarro.logical <- function(x) {
   ifelse(x, FALSE, TRUE)
 }
 
+#' @export
+bizarro.data.frame <- function(x) {
+  purrr::map_df(x, bizarro)
+}
 
-
-
+#' @export
+bizarro.list <- function(x) {
+  lapply(x, bizarro)
+}
 
 
 

@@ -2,37 +2,63 @@
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center", comment = "<")
-library(bizarro)
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#<",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
 ```
 
-# Bizarro
+# BIZARRO
+
+<!-- badges: start -->
+<!-- badges: end -->
 
 ```{r, out.width="40%", echo=FALSE}
 knitr::include_graphics("bizarro.jpg")
 ```
 
-This toy packages transforms inputs into "bizarro outputs". This was created as an exercise for the [___Building Tidy Tools___](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop at RStudio Conference 2020. It contains a single generic function "bizarro", powered by the R's S3 object-oriented system.
+- This toy packages transforms inputs into "bizarro outputs". 
 
-__Install with__
+- It was created as an exercise for the [___Building Tidy Tools___](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop at RStudio Conference 2020. 
 
-```{r, eval=FALSE}
-install_github("acastroaraujo/bizarro")
+- It contains a single generic function `bizarro()`, powered by the R's S3 object-oriented system.
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("acastroaraujo/bizarro")
 ```
 
-__Examples__
+## Example
 
-```{r}
-ex <- list(character = "andres castro araujo",
-           numeric = 1:10, 
-           factor = factor(stringr::fruit[1:5]),
-           logical = c(TRUE, FALSE, NA, FALSE, TRUE)
-           )
+This is a basic example which shows you how to solve a common problem:
 
-str(ex)
-str(lapply(ex, bizarro))
+```{r example, error=TRUE}
+library(bizarro)
 
+bizarro("andrés castro araújo")
+
+## works on lists
+example <- list(numeric = 1:10, 
+                factor = factor(stringr::fruit[1:5]),
+                logical = c(TRUE, FALSE, NA, FALSE, TRUE)
+                )
+
+bizarro(example)
+
+## works on data frames (and nested data frames)
 bizarro(iris)
+
+## doesn't work on dates
+bizarro(as.Date("1990-04-03"))
 ```
+
 
